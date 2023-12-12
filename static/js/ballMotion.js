@@ -58,7 +58,7 @@ const proxy = new Proxy(clickData, {
   set(target, key, value) {
     target[key] = value; // 更新原始对象的属性值
     console.log(`${key}属性的值被设置为：${value}`);
-    if (value === 7) {
+    if (value === 6) {
       setTimeout(() => {
         $(".popup-8").fadeIn();
       }, 1000);
@@ -86,6 +86,7 @@ ballsArr.forEach((item) => {
 
 $(".ball").on("click", function () {
   const id = $(this).data("id");
+  const index = $(this).parents(".popup").data("ball");
 
   $(".popup").hide();
   const showDom = $(`.popup-${id}`);
@@ -99,8 +100,12 @@ $(".ball").on("click", function () {
   if (+$(this).data("click")) {
     return;
   }
+  
   $(this).data("click", 1);
-  proxy.clickTotal++;
+  if (index !== 7) {
+	proxy.clickTotal++;  
+  }
+ 
   $(this).addClass("lightBg");
 });
 
@@ -125,4 +130,5 @@ $(".query").on("click", function () {
 $(".popup-8 .close").on("click", function () {
   $(".lightBg").removeClass("lightBg");
   $(".popup").hide();
+  window.location.reload();
 });
