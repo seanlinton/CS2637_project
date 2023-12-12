@@ -101,10 +101,11 @@ $(".ball").on("click", function () {
     return;
   }
   
-  $(this).data("click", 1);
-  if (index !== 7) {
-	proxy.clickTotal++;  
+  if (id != '7') {
+	  proxy.clickTotal++;
   }
+  
+  $(this).data("click", 1);
  
   $(this).addClass("lightBg");
 });
@@ -113,9 +114,6 @@ $(".close").on("click", function () {
   const index = $(this).parents(".popup").data("ball");
   $(this).parents(".popup").hide();
   $(".ball-" + index).removeClass("scale");
-  if (index === 7) {
-    location.reload()
-  }
 });
 
 $(".query").on("click", function () {
